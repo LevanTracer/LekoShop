@@ -1,0 +1,26 @@
+﻿@model List<Category>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+    <div class="text-center">
+        <h4 class="display-4">Choose Category</h4>
+    </div>
+
+
+<div class="container" align="center">
+    @foreach (var item in Model)
+    {
+        <a asp-controller="Home" asp-action="ProductsAtCategoryId" asp-route-id="@item.Id" class="btn btn-primary btn-lg">@item.Name</a>
+    }
+</div>
+ 
+
+
+
+
+
+
+
+
