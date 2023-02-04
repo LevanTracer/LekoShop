@@ -1,0 +1,47 @@
+﻿@model List<Category>
+@{
+    ViewData["Title"] = "CategoryList";
+    
+}
+
+<h1>CategoryList</h1>
+<br />
+<div class="border-5">
+    <a asp-controller="Category" asp-action="CreateCategory" class="btn btn-success text">Create Category</a>
+    <br/>
+    
+</div>
+<br />
+<form method="get" asp-controller="Category" asp-action="SearchCategory" class="d-flex">
+    <input  class="form-control me-sm-2" type="search" placeholder="Search">
+    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+</form>
+
+<br/>
+
+
+    <table class="table table-primary">
+        <thead>
+            <tr>
+               <th scope="auto">Id</th>
+               <th scope="auto">Name</th>
+               <th scope="auto"></th>
+            </tr>
+            
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="table-bordered">
+                  <td>@item.Id</td>
+                  <td>@item.Name</td>
+                  <td><a asp-controller="Category" asp-action="DeleteCategory" asp-route-id="@item.Id" class="btn btn-danger">DELETE</a>
+                      <a asp-controller="Category" asp-action="EditCategory" asp-route-id="@item.Id" class="btn btn-dark">EDIT</a>
+                      </td>
+                </tr>
+                
+            }
+        </tbody>
+    </table>
+    
+

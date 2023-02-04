@@ -1,0 +1,11 @@
+﻿@model List<Cart> 
+
+<form class="d-flex">
+        <a asp-controller="Cart" asp-action="CartList" class="btn btn-outline-dark">
+                        <i class="bi-cart-fill me-1"></i>
+                        Cart
+                        <span class="badge bg-dark text-white ms-1 rounded-pill"> @Model.Count </span>
+         </a>
+</form>
+
+ 

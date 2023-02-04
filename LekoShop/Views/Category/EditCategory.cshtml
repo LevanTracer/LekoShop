@@ -1,0 +1,19 @@
+﻿@model Category
+
+
+<h1>EDIT</h1>
+
+<form method="post">
+    <div class="form-group container">
+        <label asp-for="Name" class="col-form-label col-form-label-lg mt-4"></label>
+        <input asp-for="Name" class="form-control form-control-lg" type="text">
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <br />
+    <div class="container-fluid">
+        <button type="submit" class="btn btn-outline-primary">SAVE</button>
+        <a asp-controller="Category" asp-action="CategoryList" class="btn btn-outline-secondary">CANCEL</a>
+    </div>
+    
+</form>
+

@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 
@@ -33,16 +34,44 @@ namespace LekoShop.Controllers
         }
         public IActionResult ProductsAtCategoryId(int id)
         {
-            var item = (from x in _context.Products
-                        where x.CategoryId == id
-                        select x).ToList();            
-            _context.SaveChanges();
-            return View(item);
+            
+            var item = _context.Products.Where(x => x.CategoryId == id).ToList();
+            if (item!=null)
+            {
+                return View(item);
+            }
+            else
+            {
+                return BadRequest("There are no Products");
+            }
         }
+
         public IActionResult AllProductsView()
         {
-            return View();
+            var productList = _context.Products.ToList();
+            return View(productList);
         }
+        
+       
+
+		public IActionResult ShopItemView(int id)
+        {
+            var item = _context.Products.Find(id);
+            if (item!=null)
+            {
+                return View(item);
+            }
+
+            return View();
+        }      
+
+        
+
+
+        
+
+
+        //_________________________________________________________
         public IActionResult Privacy()
         {
             return View();
