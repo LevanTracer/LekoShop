@@ -42,7 +42,7 @@ namespace LekoShop.Controllers
             }
             else
             {
-                return BadRequest("There are no Products");
+                return NotFound("There are no Products");
             }
         }
 
@@ -63,8 +63,9 @@ namespace LekoShop.Controllers
             }
 
             return View();
-        }      
-
+        }    
+        
+       
         
 
 

@@ -1,0 +1,60 @@
+﻿@using LekoShop.ViewModels;
+@model UpdateProductVM
+
+
+<div class="py-5">
+    
+        <form method="post" enctype="multipart/form-data">
+          <div class=" border p-3 mt-auto">
+            <input asp-for="Id" hidden>
+            <div class="form-group">
+                <label asp-for=Name class="col-form-label mt-4" for="inputDefault"></label>
+                <input asp-for=Name type="text" class="form-control" placeholder="Default input" id="inputDefault">
+                <span asp-validation-for="Name"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for=ImageView class="col-form-label mt-4" for="Old Image">Old Image</label>
+                <br />
+                <img src="@Model.ImageView" width="100" , length="100" />
+                <span asp-validation-for="Name"></span>
+            </div>
+            <br />
+            <div class="form-group">
+
+                <input asp-for=NewPhoto type="file" class="form-control" placeholder="Default input" id="inputDefault">
+                <span asp-validation-for="NewPhoto"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for=Price class="col-form-label mt-4" for="inputDefault"></label>
+                <input asp-for=Price type="text" class="form-control" placeholder="Default input" id="inputDefault">
+                <span asp-validation-for="Price"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for=Description class="col-form-label mt-4" for="inputDefault"></label>
+                <input asp-for=Description type="text" class="form-control" placeholder="Default input" id="inputDefault">
+                <span asp-validation-for="Description"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for=AvailableQuantiry class="col-form-label mt-4" for="inputDefault"></label>
+                <input asp-for=AvailableQuantiry type="text" class="form-control" placeholder="Default input" id="inputDefault">
+                <span asp-validation-for="AvailableQuantiry"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for=CategoryId class="col-form-label mt-4" for="inputDefault">Category</label>
+                <select asp-items="@Model.CategorySelect" asp-for="CategoryId" class="form-select">
+                    @*<option selected="selected" value="@Model.CategoryId"></option>*@
+                </select>
+                <span asp-validation-for="CategoryId"></span>
+            </div>
+            <br />
+            <button type="submit" asp-controller="Product" asp-action="EditProduct" class="btn btn-danger">Update</button>
+            
+            <a asp-controller="Product" asp-action="ProductList" class="btn btn-outline-danger">Cancel</a>
+            </div>
+        </form>
+    
+     
+    
+    <br />
+</div>

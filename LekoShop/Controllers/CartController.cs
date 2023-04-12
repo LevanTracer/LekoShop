@@ -42,6 +42,7 @@ namespace LekoShop.Controllers
                 
                 Cart cartObj = new Cart()
                 {
+                    Image=objForAdd.Image,
                     Quantity = 1,
                     Product = objForAdd,
                     SumPrice = objForAdd.Price,
@@ -83,6 +84,7 @@ namespace LekoShop.Controllers
 
                 Cart cartObj = new Cart()
                 {
+                    Image= objForAdd.Image,
                     Quantity = 1,
                     Product = objForAdd,
                     SumPrice = objForAdd.Price,
@@ -116,26 +118,27 @@ namespace LekoShop.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddToCartFromView(int? id, int quantity)
+        public IActionResult AddToCartFromView(Product model)
         {
-            if (id != null)
-            {
-                var objForAdd = _context.Products.Find(id);
 
-                if (objForAdd != null)
+            
+            var useModel = model;
+                        
+            if (useModel != null)
+            {
+                Cart cartObj = new Cart()
                 {
-                    Cart cartObj = new Cart()
-                    {
-                        Quantity = quantity,
-                        Product = objForAdd,
-                        SumPrice = (objForAdd.Price * 1),
-                        ProductId = objForAdd.Id
-                    };
-                    _context.Carts.Add(cartObj);
-                    _context.SaveChanges();
-                    return RedirectToAction("ShopItemView", "Home", new {id=objForAdd.Id});
-                }
+                    Image = useModel.Image,
+                    Quantity = useModel.AvailableQuantity,
+                    //Product = useModel,
+                    SumPrice = useModel.Price,
+                    ProductId = useModel.Id
+                };
+                _context.Carts.Add(cartObj);
+                _context.SaveChanges();
+                return RedirectToAction("ShopItemView", "Home", new { id = useModel.Id });
             }
+
             return BadRequest("Not Found");
         }
 
@@ -155,5 +158,31 @@ namespace LekoShop.Controllers
 
             return BadRequest("Not Found");
         }
+
+
+        [HttpPost]
+        public IActionResult UpdateCartItem(int? id, int newQuantity)
+        {
+
+            var modelForUpdate = _context.Carts.Find(id);
+            if (modelForUpdate != null)
+            {
+
+            }
+
+            if (id != null)
+            {
+                var objforDelete = _context.Carts.Find(id);
+                if (objforDelete != null)
+                {
+                    _context.Carts.Remove(objforDelete);
+                    _context.SaveChanges();
+                    return RedirectToAction("CartList");
+                }
+            }
+
+            return BadRequest("Not Found");
+        }
+
     }
 }

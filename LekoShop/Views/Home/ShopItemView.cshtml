@@ -1,14 +1,15 @@
 ﻿@model Product
 @{
-    uint quantityValue=1;
+    int quantityValue=1;
 
 }
+       
        
       
         <section class="py-5">
             <div class="container px-4 px-lg-5 my-5">
                 <div class="row gx-4 gx-lg-5 align-items-center">
-                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="..." /></div>
+                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="@Model.Image" alt="..." /></div>
                     <div class="col-md-6">
                         @*<div class="small mb-1">SKU: BST-498</div>*@
                         <h1 class="display-5 fw-bolder">@Model.Name</h1>
@@ -17,13 +18,23 @@
                             <span>@Model.Price</span>
                         </div>
                         <p class="lead">@Model.Description</p>
-                <form method="post">
+                <form method="post"> 
+                    <div hidden>
+                        <input asp-for="Id" />
+                        <input asp-for="Image" />
+                        <input asp-for="Price" />
+                        <input asp-for="Name" />
+                        <input asp-for="CategoryId" />
+                        <input asp-for="Category" />
+                        <input asp-for="Description" />
+
+                    </div>
                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                         <div class="d-flex">
 
-                            <input type="number"  value="@quantityValue"   class="form-control me-3" id="inputQuantity"  style="max-width: 3rem" />
+                            <input asp-for="AvailableQuantity"  value="@quantityValue" class="form-control me-3" id="inputQuantity" style="max-width: 5em" />
                             
-                            <button asp-controller="Cart" asp-action="AddToCartFromView" asp-route-quantity="@quantityValue" asp-route-id="@Model.Id" type="submit" class="btn btn-outline-dark mt-auto">Add to cart</button>
+                            <button  asp-controller="Cart" asp-action="AddToCartFromView"  type="submit" class="btn btn-outline-dark mt-auto">Add to cart</button>
                         </div>
                     </div>
                 </form>

@@ -32,10 +32,11 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
+                            <form method="post">
                             <tr>
                                 <td class="p-4">
                                     <div class="media align-items-center">
-                                        <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="d-block ui-w-40 ui-bordered mr-4" alt="">
+                                        <img src="@item.Image" class="d-block ui-w-40 ui-bordered mr-4" alt="image" width="200" height="200">>
                                         <div class="media-body">
                                             <a  class="d-block text-dark">@(item.Product.Name)</a>
                                             
@@ -43,13 +44,21 @@
                                     </div>
                                 </td>
                                 <td class="text-right font-weight-semibold align-middle p-4">@(item.Product.Price)₾</td>
-                                <td class="align-middle p-4"><input type="text" class="form-control text-center" value="@item.Quantity"></td>
+                                <td class="align-middle p-4">                                    
+                                     <input type="number" class="form-control text-center" value="@item.Quantity">                                
+                                </td>
                                 <td class="text-right font-weight-semibold align-middle p-4">@(item.Quantity * item.Product.Price)</td>
                                 <td class="text-center align-middle px-0">
-                                    <form method="post">
-                                        <button type="submit" asp-controller="Cart" asp-action="DeleteCartItem" asp-route-id="@item.Id" class="btn btn-danger" title="" data-original-title="Remove">REMOVE</button>
-                                    </form></td>
+                                    
+                                        <button type="submit" asp-controller="Cart" asp-action="UpdateCartItem" asp-route-id="@item.Id" class="btn btn-outline-danger" title="" data-original-title="Update">Update</button>
+
+                                        <button type="submit" asp-controller="Cart" asp-action="DeleteCartItem"  asp-route-id="@item.Id" class="btn btn-danger" title="" data-original-title="Remove">Remove</button>
+                                    
+                                    
+                                </td>
+                                
                             </tr>
+                            </form>
                         }
                         
                                                

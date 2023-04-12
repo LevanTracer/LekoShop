@@ -1,0 +1,10 @@
+﻿@model List<Category>
+
+@foreach (var item in Model)
+{
+    if (item != null)
+    {
+        <li><a asp-controller="Home" asp-action="ProductsAtCategoryId" asp-route-id="@item.Id" class="dropdown-item">@item.Name</a></li>
+    }
+    
+}

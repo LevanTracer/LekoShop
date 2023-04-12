@@ -15,5 +15,6 @@ namespace LekoShop.Models
         public virtual Product Product { get; set; }
         public int Quantity { get; set; }
         public decimal SumPrice { get; set; }
+        public string Image { get; set; }
     }
 }

@@ -4,24 +4,21 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LekoShop.ViewComponents
 {
-    [ViewComponent(Name = "Cart")]
-    public class CartViewComponents: ViewComponent
+    [ViewComponent (Name ="CategoryList")]
+    public class CategoryNames:ViewComponent
     {
         private readonly LekoContext _context;
 
-        public CartViewComponents(LekoContext context)
+        public CategoryNames(LekoContext context)
         {
-
             _context = context;
         }
+
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var cartList = await _context.Carts.ToListAsync();
-            return View("Index", cartList);
-        }
-               
+            var list =await _context.Categorys.ToListAsync();
 
-
-
+            return View("Category", list);
+                }
     }
 }

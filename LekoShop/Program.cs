@@ -1,4 +1,6 @@
 using LekoShop.Data;
+using LekoShop.Services;
+using LekoShop.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Configuration;
 
@@ -12,6 +14,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IPhotoService, PhotoService>();
 
 
 builder.Services.AddDbContext<LekoContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString( "RegistrationConnection")));
